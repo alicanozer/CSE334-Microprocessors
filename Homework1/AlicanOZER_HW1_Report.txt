@@ -1,0 +1,58 @@
+/*****************************************************************
+;* CSE 334 Microprocessors                                       *
+;* Spring 2015                                                   *
+;* Homework 1                                                    *
+;* @name  :Alican OZER                                           *
+;* @number:111044070                                             *
+;* @date  :20/03/2015                                            *
+;* DESCRIPTION: 16bit LCM calculator includes BONUS              *
+;* you can also run with 16bit numbers                           *
+;* replace your numbers with num1 and num2 values                *
+;* inputs: num1 and num2                                         *
+;* results: x_sum and y_sum are equal to result                  *
+;*****************************************************************/
+
+-->1. Write a C code that computes the lowest common multiple 
+of two numbers without performing multiplication. Instead use 
+only addition to compute the lowest common multiple.
+
+#include <stdio.h>
+int main(int argc, char const *argv[])
+{
+	int num1=24,num2=40;
+	int x_sum=num1,y_sum=num2;
+
+	while(x_sum != y_sum){
+		if (x_sum > y_sum)
+			y_sum += num2;
+		else
+			x_sum += num1;
+	}
+	printf("LCM of %d and %d is %d\n",num1,num2,x_sum );
+	return 0;
+}
+-->2. Codewarrior project is in zipped file.
+
+-->3. How many bytes is the size of your code?
+inst.   byte   cycle	LCM(24,40)
+movw	6*2x	6		2x*6=12
+ldd		3*4x	3 		9x*3=27
+cpd 	3 		3 		7x*3=21
+beq 	2 		1 		7x*1=7
+bhi		2 		1* 		6x*3=18
+addd 	3*2x	3 		6x*3=18
+std 	3*2x	3 		6x*3=18
+bra 	2*2x	3 		6x*3=18
+swi 	1 		9 		1x*9=9
+TOTAL  48 bytes			148 cycles
+
+-->4. What is the execution time for your assembly program
+ in seconds for the lowest common multiple of 40 and 24.
+ if first runs, it ticks 142 cycles
+ second and other run, it ticks 148 cycles
+
+ CPUTime=#cycles*cycleTime
+ 		=~148*41.7 ns.
+ 		=~6,1716 us.
+ 		=~6,1716*10^(-6) sn.
+/*****************************************************************/

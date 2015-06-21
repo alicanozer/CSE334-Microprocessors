@@ -1,0 +1,76 @@
+Decoder V-5.0.19 Build 10203, Jul 23 2010
+Options: -NoSym -Proc=HC12 -T
+Decoding File: 'C:\Users\Can\Documents\alican_ozer_pr1\bin\Project.abs.s19'
+File format: S-Record
+
+S0390000433A5C55736572735C43616E5C446F63756D656E74735C616C6963616E5F6F7A65725F7072315C62696E5C50726F6A6563742E616273DE
+Type:     S0 (Header Block)
+Length:   0x39
+Address:  0x0000
+Text:     C:\Users\Can\Documents\alican_ozer_pr1\bin\Project.abs
+CheckSum: 0xDE
+
+S10B10000018002800000000A4
+Type:     S1 (A record containing the 2-bytes address at which the code/data is to reside)
+Length:   0xB
+Address:  0x1000
+Data:     0x1000   00 18 00 28 00 00 00 00  - ???(????
+CheckSum: 0xA4
+
+S1234000180410001004180410021006FC1004BC1006271B220BFC1004F310007C10042004
+Type:     S1 (A record containing the 2-bytes address at which the code/data is to reside)
+Length:   0x23
+Address:  0x4000
+Data:     0x4000   18 04 10 00 10 04 18 04  - ????????
+          0x4008   10 02 10 06 FC 10 04 BC  - ????????
+          0x4010   10 06 27 1B 22 0B FC 10  - ??'?"???
+          0x4018   04 F3 10 00 7C 10 04 20  - ????|?? 
+CheckSum: 0x4
+
+S1134020EEFC1006F310027C1006FC100420E03FA6
+Type:     S1 (A record containing the 2-bytes address at which the code/data is to reside)
+Length:   0x13
+Address:  0x4020
+Data:     0x4020   EE FC 10 06 F3 10 02 7C  - ???????|
+          0x4028   10 06 FC 10 04 20 E0 3F  - ????? ??
+CheckSum: 0xA6
+
+S105FFFE4000BD
+Type:     S1 (A record containing the 2-bytes address at which the code/data is to reside)
+Length:   0x5
+Address:  0xFFFE
+Data:     0xFFFE   40 00                    - @?
+CheckSum: 0xBD
+
+S9030000FC
+Type:     S9 (Termination record for a block of S1 records)
+Length:   0x3
+Address:  0x0000
+CheckSum: 0xFC
+
+Disassembly: 
+
+00001000 00           [5]    BGND  
+00001001 1800280000   [4]    MOVW  #0,8,-X
+00001006 00           [5]    BGND  
+00001007 00           [5]    BGND  
+
+00004000 180410001004 [6]    MOVW  $1000,$1004
+00004006 180410021006 [6]    MOVW  $1002,$1006
+0000400C FC1004       [3]    LDD   $1004
+0000400F BC1006       [3]    CPD   $1006
+00004012 271B         [3/1]  BEQ   *+29       ;abs = $402F
+00004014 220B         [3/1]  BHI   *+13       ;abs = $4021
+00004016 FC1004       [3]    LDD   $1004
+00004019 F31000       [3]    ADDD  $1000
+0000401C 7C1004       [3]    STD   $1004
+0000401F 20EE         [3]    BRA   *-16       ;abs = $400F
+00004021 FC1006       [3]    LDD   $1006
+00004024 F31002       [3]    ADDD  $1002
+00004027 7C1006       [3]    STD   $1006
+0000402A FC1004       [3]    LDD   $1004
+0000402D 20E0         [3]    BRA   *-30       ;abs = $400F
+0000402F 3F           [9]    SWI   
+
+0000FFFE 40           [1]    NEGA  
+0000FFFF 00           [5]    BGND  
